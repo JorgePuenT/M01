@@ -6,10 +6,18 @@ import junit.framework.TestSuite;
 
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
+import org.ejml.data.Complex64F;
+import org.ejml.data.DenseMatrix64F;
+import org.ejml.ops.CommonOps;
+import org.ejml.ops.EjmlUnitTests;
+import org.ejml.ops.NormOps;
+import org.ejml.ops.RandomMatrices;
+import java.util.Random;
+import org.ejml.simple.*;
 /**
  * Unit test for simple App.
  */
-public class AppTest 
+public class AppTest
     extends TestCase
 {
     /**
@@ -36,7 +44,17 @@ public class AppTest
     public void testApp()
     {
         assertTrue( true );
- 	UndirectedGraph<String, DefaultEdge> stringGraph = new SimpleGraph<String, DefaultEdge>(DefaultEdge.class);
+ 	      UndirectedGraph<String, DefaultEdge> stringGraph = new SimpleGraph<String, DefaultEdge>(DefaultEdge.class);
     }
+
+
+    public void testMatriz(){
+      double d[] = new double[]{2,5,3,9,-2,6,7,4};
+      SimpleMatrix s = new SimpleMatrix(3,2, true, d);
+      DenseMatrix64F m = new DenseMatrix64F(3,2, true, d);
+
+      EjmlUnitTests.assertEquals(m,s.getMatrix(),1e-8);
+    }
+
 
 }
